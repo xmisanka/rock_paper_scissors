@@ -2,97 +2,104 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <title>Rock Paper Scissors</title>
+    <meta charset="utf-8">
+    <title>Rock Paper Scissors</title>
 </head>
 
 <body>
 
-  <script>
-
-    let playerScore = 0;
-    let computerScore = 0;
-
-
-    // computerSelection - what the computer picks
-
-    function computerPlay() {
-      let randomNumber = Math.random();
-
-      if (randomNumber < 0.33) {
-        return 'rock';
-      } else if (randomNumber > 0.66) {
-        return 'paper';
-      } else {
-        return 'scissors';
-      }
-    }
+    <button id="rock"><img src="images/rock_sm.jpg"></button>
+    <button id="paper"><img src="images/paper_sm.jpg"></button>
+    <button id="scissors"><img src="images/scissors_sm.jpg"></button>
 
 
-    // who wins the round, computer or human?
+    <script>
 
-    function playRound(playerSelection, computerSelection) {
-
-      if (playerSelection === 'rock' && computerSelection === 'scissors') {
-        playerScore++;
-        return 'You win. Rock beats scissors.';
-      } else if (playerSelection === 'rock' && computerSelection === 'paper') {
-        computerScore++;
-        return 'You lose. Paper beats rock.';
-      } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-        playerScore++;
-        return 'You win. Paper beats rock.';
-      } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
-        computerScore++;
-        return 'You lose. Scissors beat paper.';
-      } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
-        playerScore++;
-        return 'You win. Scissors beat paper.';
-      } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
-        computerScore++;
-        return 'You lose. Rock beats scissors.';
-      } else if (playerSelection === computerSelection) {
-        return 'It\'s a tie.'
-      } else {
-        return 'Choose valid value to play.'
-      }
-    }
+        let playerScore = 0;
+        let computerScore = 0;
 
 
-    // game repeat 5x
+        // computerSelection - what the computer picks
 
-    function game() {
-      for (let i = 0; i < 5; i++) {
+        function computerPlay() {
+            let randomNumber = Math.random();
 
-        // playerSelection - what human chooses
+            if (randomNumber < 0.33) {
+                return 'rock';
+            } else if (randomNumber > 0.66) {
+                return 'paper';
+            } else {
+                return 'scissors';
+            }
+        }
 
-        let playerSelection = prompt('Rock, paper or scissors?')
-        let computerSelection = computerPlay();
+        // who wins the round, computer or human?
 
-        console.log(playerSelection);
-        console.log(computerSelection);
-        console.log(playRound(playerSelection, computerSelection));
-        console.log('Player: ' + playerScore + ' Computer: ' + computerScore);
-      }
-    }
+        function playRound(playerSelection, computerSelection) {
 
-    function whoWins(playerScore, computerScore) {
-      if (playerScore < computerScore) {
-        return 'You lose the game.';
-      } else if (playerScore > computerScore) {
-        return 'You win the game.';
-      } else {
-        return 'The game is a tie.';
-      }
-    }
+            if (playerSelection == 'rock' && computerSelection == 'scissors') {
+                playerScore++;
+                return 'You win. Rock beats scissors.';
+            } else if (playerSelection == 'rock' && computerSelection == 'paper') {
+                computerScore++;
+                return 'You lose. Paper beats rock.';
+            } else if (playerSelection == 'paper' && computerSelection == 'rock') {
+                playerScore++;
+                return 'You win. Paper beats rock.';
+            } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
+                computerScore++;
+                return 'You lose. Scissors beat paper.';
+            } else if (playerSelection == 'scissors' && computerSelection == 'paper') {
+                playerScore++;
+                return 'You win. Scissors beat paper.';
+            } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
+                computerScore++;
+                return 'You lose. Rock beats scissors.';
+            } else if (playerSelection === computerSelection) {
+                return 'It\'s a tie.'
+            } else {
+                return 'Choose valid value to play.'
+            }
+        }
 
-    // call the game and total game result
-
-    game();
-    console.log(whoWins(playerScore, computerScore))
 
 
-  </script>
+        // event listener for RPS playerSelection buttons
+
+        let rockButton = document.getElementById('rock');
+        rockButton.addEventListener('click', (e) => {
+            let playerSelection = 'rock';
+            let computerSelection = computerPlay();
+            playRound(playerSelection, computerSelection);
+            console.log(playerSelection);
+            console.log(computerSelection);
+            console.log(playRound(playerSelection, computerSelection));
+        });
+
+
+        let paperButton = document.getElementById('paper');
+        paperButton.addEventListener('click', (e) => {
+            let playerSelection = 'paper';
+            let computerSelection = computerPlay();
+            playRound(playerSelection, computerSelection);
+            console.log(playerSelection);
+            console.log(computerSelection);
+            console.log(playRound(playerSelection, computerSelection));
+        });
+
+        let scissorsButton = document.getElementById('scissors');
+        scissorsButton.addEventListener('click', (e) => {
+            let playerSelection = 'scissors';
+            let computerSelection = computerPlay();
+            playRound(playerSelection, computerSelection);
+            console.log(playerSelection);
+            console.log(computerSelection);
+            console.log(playRound(playerSelection, computerSelection));
+        })
+
+
+
+    </script>
 </body>
 
 </html>
