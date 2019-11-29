@@ -8,98 +8,26 @@
 
 <body>
 
+    <h1>Rock Paper Scissors</h1>
+
+    <h3>Let's Play Five Games</h3>
+
     <button id="rock"><img src="images/rock_sm.jpg"></button>
     <button id="paper"><img src="images/paper_sm.jpg"></button>
     <button id="scissors"><img src="images/scissors_sm.jpg"></button>
+    <div>
+        <div class="selection">
+        </div>
+        <div class="result">
+        </div>
+        <div class="score">
+        </div>
+    </div>
 
+    <div class="gameResult">
+    </div>
 
-    <script>
-
-        let playerScore = 0;
-        let computerScore = 0;
-
-
-        // computerSelection - what the computer picks
-
-        function computerPlay() {
-            let randomNumber = Math.random();
-
-            if (randomNumber < 0.33) {
-                return 'rock';
-            } else if (randomNumber > 0.66) {
-                return 'paper';
-            } else {
-                return 'scissors';
-            }
-        }
-
-        // who wins the round, computer or human?
-
-        function playRound(playerSelection, computerSelection) {
-
-            if (playerSelection == 'rock' && computerSelection == 'scissors') {
-                playerScore++;
-                return 'You win. Rock beats scissors.';
-            } else if (playerSelection == 'rock' && computerSelection == 'paper') {
-                computerScore++;
-                return 'You lose. Paper beats rock.';
-            } else if (playerSelection == 'paper' && computerSelection == 'rock') {
-                playerScore++;
-                return 'You win. Paper beats rock.';
-            } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
-                computerScore++;
-                return 'You lose. Scissors beat paper.';
-            } else if (playerSelection == 'scissors' && computerSelection == 'paper') {
-                playerScore++;
-                return 'You win. Scissors beat paper.';
-            } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
-                computerScore++;
-                return 'You lose. Rock beats scissors.';
-            } else if (playerSelection === computerSelection) {
-                return 'It\'s a tie.'
-            } else {
-                return 'Choose valid value to play.'
-            }
-        }
-
-
-
-        // event listener for RPS playerSelection buttons
-
-        let rockButton = document.getElementById('rock');
-        rockButton.addEventListener('click', (e) => {
-            let playerSelection = 'rock';
-            let computerSelection = computerPlay();
-            playRound(playerSelection, computerSelection);
-            console.log(playerSelection);
-            console.log(computerSelection);
-            console.log(playRound(playerSelection, computerSelection));
-        });
-
-
-        let paperButton = document.getElementById('paper');
-        paperButton.addEventListener('click', (e) => {
-            let playerSelection = 'paper';
-            let computerSelection = computerPlay();
-            playRound(playerSelection, computerSelection);
-            console.log(playerSelection);
-            console.log(computerSelection);
-            console.log(playRound(playerSelection, computerSelection));
-        });
-
-        let scissorsButton = document.getElementById('scissors');
-        scissorsButton.addEventListener('click', (e) => {
-            let playerSelection = 'scissors';
-            let computerSelection = computerPlay();
-            playRound(playerSelection, computerSelection);
-            console.log(playerSelection);
-            console.log(computerSelection);
-            console.log(playRound(playerSelection, computerSelection));
-        })
-
-
-
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
