@@ -1,0 +1,40 @@
+html {
+    font-size: 17px;
+    font-family: 'Libre Baskerville', serif;
+    color: #505050;
+    position: center;
+}
+
+body { 
+    margin: auto;
+    width: 50%;
+    padding-top: 10%;
+}
+
+h1, h3, p, .btns {
+    text-align: center;
+}
+
+button {
+    background: transparent;
+    border: 0;
+} 
+
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn.focus:active,
+.btn:active:focus,
+.btn:focus {
+  outline: 0 !important;
+  outline-offset: 0  !important;
+  background-image: none  !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none  !important;
+  size: 110%;
+  transform:scale(1.1,1.1);
+    -webkit-transform:scale(1.1,1.1);
+    -moz-transform:scale(1.1,1.1);
+}
+
+

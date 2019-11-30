@@ -12,7 +12,10 @@ let result = document.querySelector('.result');
 let roundResult = document.createElement('p');
 
 let score = document.querySelector('.score');
-let scoreCount = document.createElement('p')
+let scoreCount = document.createElement('p');
+
+let gameResult = document.querySelector('.gameResult');
+let gResult = document.createElement('h3');
 
 // computerSelection - what the computer picks
 
@@ -57,53 +60,68 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-//final score
+//game winner
 
-function whoWins(playerScore, computerScore) {
-    if (playerScore < computerScore) {
-        return 'You lose the game.';
-    } else if (playerScore > computerScore) {
-        return 'You win the game.';
+function whoWins (playerScore, computerScore) {
+    if (playerScore === 5) {
+        document.getElementById("rock").disabled = true;
+        document.getElementById("paper").disabled = true;
+        document.getElementById("scissors").disabled = true;
+        return 'You won the game! Reload the page to play again.';
+    } else if (computerScore === 5) {        
+        document.getElementById("rock").disabled = true;
+        document.getElementById("paper").disabled = true;
+        document.getElementById("scissors").disabled = true;
+        return 'Computer won the game! Reload the page to play again.';
     } else {
-        return 'The game is a tie.';
+        return 'Keep playing.'
     }
 }
 
-// event listeners for RPS playerSelection buttons
+//event listeners for RPS playerSelection buttons
 
 rockButton.addEventListener('click', () => {
     let playerSelection = 'rock';
     let computerSelection = computerPlay();
     let round = playRound(playerSelection, computerSelection);
+    let fResult = whoWins(playerScore, computerScore);
     selected.textContent = 'Computer choice: ' + `${computerSelection}`;
     selection.appendChild(selected);
     roundResult.textContent = `${round}`;
     result.appendChild(roundResult);
     scoreCount.textContent = 'You: ' + `${playerScore}` + '   ' + 'Computer: ' + `${computerScore}`;
-    score.appendChild(scoreCount); 
+    score.appendChild(scoreCount);
+    gResult.textContent = `${fResult}`;
+    gameResult.appendChild(gResult);
 });
 
 paperButton.addEventListener('click', () => {
     let playerSelection = 'paper';
     let computerSelection = computerPlay();
     let round = playRound(playerSelection, computerSelection);
+    let fResult = whoWins(playerScore, computerScore);
     selected.textContent = 'Computer choice: ' + `${computerSelection}`;
     selection.appendChild(selected)
     roundResult.textContent = `${round}`;
     result.appendChild(roundResult);
     scoreCount.textContent = 'You: ' + `${playerScore}` + '   ' + 'Computer: ' + `${computerScore}`;
-    score.appendChild(scoreCount); 
+    score.appendChild(scoreCount);
+    gResult.textContent = `${fResult}`;
+    gameResult.appendChild(gResult);
 });
 
 scissorsButton.addEventListener('click', () => {
     let playerSelection = 'scissors';
     let computerSelection = computerPlay();
     let round = playRound(playerSelection, computerSelection);
+    let fResult = whoWins(playerScore, computerScore);
     selected.textContent = 'Computer choice: ' + `${computerSelection}`;
     selection.appendChild(selected);
     roundResult.textContent = `${round}`;
     result.appendChild(roundResult);
     scoreCount.textContent = 'You: ' + `${playerScore}` + '   ' + 'Computer: ' + `${computerScore}`;
-    score.appendChild(scoreCount); 
+    score.appendChild(scoreCount);
+    gResult.textContent = `${fResult}`;
+    gameResult.appendChild(gResult);
 })
 
