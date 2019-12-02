@@ -34,7 +34,6 @@ function computerPlay() {
 // who wins the round, computer or human?
 
 function playRound(playerSelection, computerSelection) {
-
     if (playerSelection == 'rock' && computerSelection == 'scissors') {
         playerScore++;
         return 'You win. Rock beats scissors.';
@@ -53,75 +52,66 @@ function playRound(playerSelection, computerSelection) {
     } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
         computerScore++;
         return 'You lose. Rock beats scissors.';
-    } else if (playerSelection === computerSelection) {
-        return 'It\'s a tie.'
     } else {
-        return 'Choose valid value to play.'
+        return 'It\'s a tie.';
     }
+}
+
+//disable buttons
+
+function disableButtons() {
+    rockButton.disabled = true;
+    paperButton.disabled = true;
+    scissorsButton.disabled = true;
 }
 
 //game winner
 
-function whoWins (playerScore, computerScore) {
+function whoWins(playerScore, computerScore) {
     if (playerScore === 5) {
-        document.getElementById("rock").disabled = true;
-        document.getElementById("paper").disabled = true;
-        document.getElementById("scissors").disabled = true;
+        disableButtons();
         return 'You won the game! Reload the page to play again.';
-    } else if (computerScore === 5) {        
-        document.getElementById("rock").disabled = true;
-        document.getElementById("paper").disabled = true;
-        document.getElementById("scissors").disabled = true;
+    } else if (computerScore === 5) {
+        disableButtons();
         return 'Computer won the game! Reload the page to play again.';
     } else {
         return 'Keep playing.'
     }
 }
 
+//display results
+
+function displayResults() {
+    let fResult = whoWins(playerScore, computerScore);
+    scoreCount.textContent = `You: ${playerScore}  Computer: ${computerScore}`;
+    score.appendChild(scoreCount);
+    gResult.textContent = fResult;
+    gameResult.appendChild(gResult);
+}
+
+//evaluating player selection
+
+function evaluatePlayerSelection (playerSelection) {
+    let computerSelection = computerPlay();
+    let round = playRound(playerSelection, computerSelection);
+    selected.textContent = `Computer choice: ${computerSelection}`;
+    selection.appendChild(selected);
+    roundResult.textContent = round;
+    result.appendChild(roundResult);
+    displayResults();
+}
+
+
 //event listeners for RPS playerSelection buttons
 
 rockButton.addEventListener('click', () => {
-    let playerSelection = 'rock';
-    let computerSelection = computerPlay();
-    let round = playRound(playerSelection, computerSelection);
-    let fResult = whoWins(playerScore, computerScore);
-    selected.textContent = 'Computer choice: ' + `${computerSelection}`;
-    selection.appendChild(selected);
-    roundResult.textContent = `${round}`;
-    result.appendChild(roundResult);
-    scoreCount.textContent = 'You: ' + `${playerScore}` + '   ' + 'Computer: ' + `${computerScore}`;
-    score.appendChild(scoreCount);
-    gResult.textContent = `${fResult}`;
-    gameResult.appendChild(gResult);
+    evaluatePlayerSelection('rock');
 });
 
 paperButton.addEventListener('click', () => {
-    let playerSelection = 'paper';
-    let computerSelection = computerPlay();
-    let round = playRound(playerSelection, computerSelection);
-    let fResult = whoWins(playerScore, computerScore);
-    selected.textContent = 'Computer choice: ' + `${computerSelection}`;
-    selection.appendChild(selected)
-    roundResult.textContent = `${round}`;
-    result.appendChild(roundResult);
-    scoreCount.textContent = 'You: ' + `${playerScore}` + '   ' + 'Computer: ' + `${computerScore}`;
-    score.appendChild(scoreCount);
-    gResult.textContent = `${fResult}`;
-    gameResult.appendChild(gResult);
+    evaluatePlayerSelection('paper');
 });
 
 scissorsButton.addEventListener('click', () => {
-    let playerSelection = 'scissors';
-    let computerSelection = computerPlay();
-    let round = playRound(playerSelection, computerSelection);
-    let fResult = whoWins(playerScore, computerScore);
-    selected.textContent = 'Computer choice: ' + `${computerSelection}`;
-    selection.appendChild(selected);
-    roundResult.textContent = `${round}`;
-    result.appendChild(roundResult);
-    scoreCount.textContent = 'You: ' + `${playerScore}` + '   ' + 'Computer: ' + `${computerScore}`;
-    score.appendChild(scoreCount);
-    gResult.textContent = `${fResult}`;
-    gameResult.appendChild(gResult);
-})
-
+    evaluatePlayerSelection('scissors');
+});
